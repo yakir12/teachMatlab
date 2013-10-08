@@ -1,5 +1,6 @@
 close all
 clear all
+clear all
 clc
 %% Mat file
 a = load('cornea distal_ArgoC1.mat');
@@ -21,17 +22,25 @@ axial_distance = num(:,2);
 x = cumsum(axial_distance);
 ri = num(:,3);
 figure
-stairs(x,ri,'.-')
+stairs(x,ri,'*-')
 %% Text file
-fid = fopen('fromSpectrometer.txt');
+fid = fopen('fromSpectrometer.txt','r');
 xy = textscan(fid,'%f %f','HeaderLines',17);
 wavelength = xy{1};
 intensity = xy{2};
 figure
 plot(wavelength,intensity)
+%%
+wl = linspace(400,700,100);
+y = interp1(wavelength,intensity,wl);
+
+figure
+plot(wavelength,intensity,'.k')
+hold on
+plot(wl,y,'.r')
 %% Process some
 intensity = intensity-mean(intensity(wavelength > 800));
-f = fit(wavelength,intensity,'gauss1');
+f = fit(wavelength,intensity,'fourier5');
 
 figure
 plot(f,wavelength,intensity)

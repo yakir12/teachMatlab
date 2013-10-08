@@ -2,4 +2,4 @@ README
 ======
 This is a set of tutorials about Matlab.
 - Tutorial1: how to load and fetch data into matlab and a bit about what we can do with it. 
--  
+- Tutorial2: Looming stimulus in all its glory.   
