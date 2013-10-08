@@ -3,6 +3,28 @@ clear all
 clc
 %%
 nsteps = 100;
+l2 = linspace(1,0,nsteps);
+l1 = .1;
+r2 = .2;
+
+r = r2*l1./l2;
+
+theta = linspace(0,2*pi,100);
+
+bkgd = .7;
+dsk = .2;
+
+figure('color',bkgd*ones(1,3),'position',[200,200,401,401])
+axis equal
+axis([-1,1,-1,1])
+axis off
+for i = 1:nsteps
+    xy = r(i)*exp(theta*1i);
+    patch(real(xy),imag(xy),dsk*ones(1,3))
+    drawnow
+end
+%%
+nsteps = 100;
 r = linspace(0,1,nsteps);
 
 theta = linspace(0,2*pi,100);
@@ -66,27 +88,4 @@ set(gcf,'position',[200,200,401,401])
 for i = 1:nsteps
     set(h,'CData',gray(:,:,i))
     drawnow
-end
-%%
-nsteps = 100;
-l2 = linspace(1,0,nsteps);
-l1 = .1;
-r2 = .1;
-
-r = r2*l1./l2;
-
-theta = linspace(0,2*pi,100);
-
-bkgd = .7;
-dsk = .2;
-
-figure('color',bkgd*ones(1,3),'position',[200,200,401,401])
-axis equal
-axis([-1,1,-1,1])
-axis off
-for i = 1:nsteps
-    xy = r(i)*exp(theta*1i);
-    patch(real(xy),imag(xy),dsk*ones(1,3))
-    drawnow
-    pause(.01)
 end
