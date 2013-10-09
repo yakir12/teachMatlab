@@ -7,17 +7,19 @@ r = linspace(0,1,nsteps);
 
 theta = linspace(0,2*pi,100);
 
-bkgd = .7;
-dsk = .2;
+bkgd = 1;
+dsk = .5;
 
-figure('color',bkgd*ones(1,3),'position',[200,200,401,401])
+figure
+% figure('color',bkgd*ones(1,3),'position',[500,500,401,401])
 axis equal
-axis([-1,1,-1,1])
+axis([-2,2,-2,2])
 axis off
 for i = 1:nsteps
-    xy = r(i)*exp(theta*1i);
-    patch(real(xy),imag(xy),dsk*ones(1,3))
+    xy = r(i)*exp(theta*1i)+rand+1i*rand;
+    h = patch(real(xy),imag(xy),dsk*ones(1,3),'edgecolor','none');
     drawnow
+    delete(h)
 end
 %%
 
@@ -32,7 +34,7 @@ x = real(xy);
 y = imag(xy);
 
 
-figure('color',bkgd*ones(1,3),'position',[200,200,401,401])
+figure('color',bkgd*ones(1,3),'position',[500,500,401,401])
 axis equal
 axis([-1,1,-1,1])
 axis off
@@ -62,7 +64,7 @@ gray(bw) = bkgd;
 
 figure('color',bkgd*ones(1,3))
 h = imshow(bw(:,:,1));
-set(gcf,'position',[200,200,401,401])
+set(gcf,'position',[500,500,401,401])
 for i = 1:nsteps
     set(h,'CData',gray(:,:,i))
     drawnow
@@ -80,7 +82,7 @@ theta = linspace(0,2*pi,100);
 bkgd = .7;
 dsk = .2;
 
-figure('color',bkgd*ones(1,3),'position',[200,200,401,401])
+figure('color',bkgd*ones(1,3),'position',[500,500,401,401])
 axis equal
 axis([-1,1,-1,1])
 axis off
