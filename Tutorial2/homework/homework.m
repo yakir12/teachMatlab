@@ -6,7 +6,7 @@
 % function 'imread'. It takes the image name as a string. Strings are
 % denoted with single quotation marks like 'this'. 
 
-I = ...
+...
  
 % create a vector of 'nsteps' length that goes from zero to one using the
 % 'linspace' function we know so well. But alas, this vector's first
@@ -16,14 +16,12 @@ I = ...
 % Good yoggi, we wanted one with exactly nsteps elements. How can we fix 
 % that?
 
-nsteps = ...
-r = linspace(...);
 ...
 
 % Create a figure with white background (never mind the size and location,
 % just control the color). 
 
-figure(...
+...
 
 % Write a for-loop that runs from 1 to nsteps where each iteration it shows
 % Justin's head in a different size. You'll need to know about the function
@@ -43,6 +41,44 @@ figure(...
 % with a call to 'drawnow' which makes sure it shows you the image every
 % iteration (as opposed to only at the end).
 
-for i = ...
+...
+
+%% Advanced
+
+% Let's try and get rid of that jumping and jittering. You'll need to
+% buffer the resized image so that although it's now smaller than normal
+% (for 'r' values that are smaller than 1) it'll need to be surrounded by
+% white (that means 255) so that the number of pixels in that image is
+% equal to the maximum size.
+% You'll need these functions:
+% size
+% imresize
+% round
+% padarray
+% imshow
+% drawnow
+% What you want to do is find the difference between the size of the
+% original image and that of the resized one. Pad the image with half that
+% difference (but it needs to be a round number! cause there's no meaning
+% in an image that is 5.5 pixels wide... use the 'round' function) on one
+% side (using the wonderful option "pre" or "post" in the 'padarray'
+% function) of the resized image. Then padd that with
+% what-ever-number-of-pixels-you'll-need-so-that-the-resized-paded-image-will-now-be-the-size-of-the-original-image
+% on the other side, and there, you're done!
+% Check the help files! I replaced key points in the code with '...', so
+% you could use the following as a skeleton or you could work it out on
+% your own!
+
+sz = ...;
+sz(3) = [];
+figure('color',...)
+... i = ...
+    I2 = imresize(...,r(i));
+    sz2 = ...;
+    sz2(3) = ...;
+    pad = ...((...-...)/2);
+    J = padarray(I2,[...,0],255,'pre');
+    J = padarray(...,[...],255,'post');    
+    imshow(...)
     ...
 end
